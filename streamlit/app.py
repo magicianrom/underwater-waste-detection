@@ -8,10 +8,8 @@ st.title("Underwater Waste Classifier")
 
 @st.cache_resource
 def load():
-
-    
-    model = keras.models.load_model("mobilenet_phase2.keras")
-    with open("class_names.json") as f:
+    model = keras.models.load_model("data/mobilenet_phase2.keras")
+    with open("data/class_names.json") as f:
         names = json.load(f)
     return model, names
 
