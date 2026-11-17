@@ -1,32 +1,31 @@
-
 import streamlit as st
-from PIL import Image
-from ultralytics import YOLO
 
-st.title("Underwater Waste Segmentation Test")
-
-@st.cache_resource
-def load_model():
-    return YOLO("data/best.pt")
-
-model = load_model()
-
-file = st.file_uploader(
-    "Upload an underwater image",
-    type=["jpg", "jpeg", "png"]
+st.set_page_config(
+    page_title="Underwater Waste Detection",
+    page_icon="🌊"
 )
 
-if file is not None:
-    img = Image.open(file).convert("RGB")
+# Define the pages
+main_page = st.Page(
+    "splash.py",
+    title="Home",
+    icon="🏠"
+)
 
-    results = model.predict(
-        source=img,
-        conf=0.25,
-        device="cpu",
-        verbose=False
-    )
+page_2 = st.Page(
+    "classification.py",
+    title="Classification",
+    icon="🗂️"
+)
 
-    st.image(
-        results[0].plot()[:, :, ::-1],
-        caption="Detection and Segmentation"
-    )
+page_3 = st.Page(
+    "segmentation.py",
+    title="Localization & Segmentation",
+    icon="🌊"
+)
+
+# Set up navigation
+pg = st.navigation([main_page, page_2, page_3])
+
+# Run selected page
+pg.run()
