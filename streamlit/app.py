@@ -11,7 +11,10 @@ st.title("Underwater Waste Classifier")
 # Load classification model
 @st.cache_resource
 def load():
-    model = keras.models.load_model("data/mobilenet_phase2.keras")
+    model = keras.models.load_model(
+        "data/mobilenet_phase2.keras",
+        compile=False
+    )
 
     with open("data/class_names.json") as f:
         names = json.load(f)
@@ -34,8 +37,8 @@ file = st.file_uploader(
 )
 
 if file is not None:
-
     img = Image.open(file).convert("RGB")
+
     st.image(img, caption="Input Image", width=400)
 
     # Classification
@@ -63,8 +66,7 @@ if file is not None:
 
     st.subheader("Detection and Segmentation")
 
-    detected_image = results[0].plot()
-    detected_image = detected_image[:, :, ::-1]
+    detected_image = results[0].plot()[:, :, ::-1]
 
     st.image(
         detected_image,
