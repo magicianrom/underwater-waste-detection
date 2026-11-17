@@ -22,27 +22,28 @@ def load_yolo():
 model, class_names = load()
 yolo_model = load_yolo()
 
-# Classification
-file = st.file_uploader("Upload a cropped image of one waste item", type=["jpg", "jpeg", "png"])
+file = st.file_uploader(
+    "Upload an underwater image",
+    type=["jpg", "jpeg", "png"]
+)
 
 if file:
     img = Image.open(file).convert("RGB")
-    st.image(img, caption="Input", width=300)
+    st.image(img, caption="Input", width=400)
 
-    x = np.expand_dims(np.array(img.resize((224, 224)), dtype="float32"), axis=0)
+    # Classification
+    x = np.expand_dims(
+        np.array(img.resize((224, 224)), dtype="float32"),
+        axis=0
+    )
     probs = model.predict(x, verbose=0)[0]
 
     best = int(np.argmax(probs))
-    st.subheader(f"{class_names[best]} ({probs[best]:.1%})")
+    st.subheader(f"Classification: {class_names[best]} ({probs[best]:.1%})")
     st.bar_chart({n: float(p) for n, p in zip(class_names, probs)})
 
-# Detection and segmentation
-st.header("Waste Detection and Segmentation")
-
-seg_file = st.file_uploader("Upload an underwater image", type=["jpg", "jpeg", "png"])
-
-if seg_file:
-    img = Image.open(seg_file).convert("RGB")
+    # Detection and segmentation
     results = yolo_model.predict(img, conf=0.25, verbose=False)
 
-    st.image(results[0].plot(), caption="Detection and Segmentation", width=500)
+    st.subheader("Detection and Segmentation")
+    st.image(results[0].plot(), caption="Detected Waste", width=500)
