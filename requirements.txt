@@ -4,3 +4,4 @@ keras>=3.0
 numpy
 pillow
 ultralytics
+opencv-python-headless
