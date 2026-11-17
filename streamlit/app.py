@@ -8,42 +8,66 @@ from ultralytics import YOLO
 
 st.title("Underwater Waste Classifier")
 
+# Load classification model
 @st.cache_resource
 def load():
     model = keras.models.load_model("data/mobilenet_phase2.keras")
+
     with open("data/class_names.json") as f:
         names = json.load(f)
+
     return model, names
 
+# Load YOLO model
 @st.cache_resource
 def load_yolo():
     return YOLO("data/best.pt")
 
+
 model, class_names = load()
 yolo_model = load_yolo()
 
+# Upload image
 file = st.file_uploader(
     "Upload an underwater image",
     type=["jpg", "jpeg", "png"]
 )
 
-if file:
+if file is not None:
+
     img = Image.open(file).convert("RGB")
-    st.image(img, caption="Input", width=400)
+    st.image(img, caption="Input Image", width=400)
 
     # Classification
-    x = np.expand_dims(
-        np.array(img.resize((224, 224)), dtype="float32"),
-        axis=0
-    )
+    x = np.array(img.resize((224, 224)), dtype="float32")
+    x = np.expand_dims(x, axis=0)
+
     probs = model.predict(x, verbose=0)[0]
 
     best = int(np.argmax(probs))
-    st.subheader(f"Classification: {class_names[best]} ({probs[best]:.1%})")
-    st.bar_chart({n: float(p) for n, p in zip(class_names, probs)})
 
-    # Detection and segmentation
-    results = yolo_model.predict(img, conf=0.25, verbose=False)
+    st.subheader("Classification")
+    st.write(f"{class_names[best]} ({probs[best]:.1%})")
+
+    st.bar_chart({
+        name: float(prob)
+        for name, prob in zip(class_names, probs)
+    })
+
+    # Detection and Segmentation
+    results = yolo_model.predict(
+        source=img,
+        conf=0.25,
+        verbose=False
+    )
 
     st.subheader("Detection and Segmentation")
-    st.image(results[0].plot(), caption="Detected Waste", width=500)
+
+    detected_image = results[0].plot()
+    detected_image = detected_image[:, :, ::-1]
+
+    st.image(
+        detected_image,
+        caption="Detected Waste",
+        width=500
+    )
