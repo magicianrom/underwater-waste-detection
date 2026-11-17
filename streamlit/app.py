@@ -7,7 +7,7 @@ st.set_page_config(
 
 # Define the pages
 main_page = st.Page(
-    "splash.py",
+    "index.py",
     title="Home",
     icon="🏠"
 )
@@ -19,7 +19,7 @@ page_2 = st.Page(
 )
 
 page_3 = st.Page(
-    "segmentation.py",
+    "Localization_Segmentation.py",
     title="Localization & Segmentation",
     icon="🌊"
 )
