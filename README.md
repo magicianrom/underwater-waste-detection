@@ -2,11 +2,15 @@
 
 An AI-powered computer vision project that identifies, detects, and segments underwater waste using deep learning.
 
-# URL 
+# URL
+
 https://underwater-waste-detection.streamlit.app
 
-# Video Demo
+# Video link 
 
+https://drive.google.com/file/d/1cV3d4p3lkRXe6UxZtwb3-cAMiIjpD4I3/view?usp=sharing
+
+# Video Demo
 
 https://github.com/user-attachments/assets/74985107-eb38-4e25-b3ac-2b2008d9554b
 
