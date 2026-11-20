@@ -5,6 +5,11 @@ An AI-powered computer vision project that identifies, detects, and segments und
 # URL 
 https://underwater-waste-detection.streamlit.app
 
+# Video Demo
+
+
+https://github.com/user-attachments/assets/74985107-eb38-4e25-b3ac-2b2008d9554b
+
 ## Project Overview
 
 This project uses two deep learning models:
