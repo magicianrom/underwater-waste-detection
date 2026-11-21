@@ -2,6 +2,51 @@
 
 An AI-powered computer vision project that identifies, detects, and segments underwater waste using deep learning.
 
+## Project Structure
+
+```text
+├── .devcontainer/
+│   └── devcontainer.json
+├── data/
+│   ├── best.pt
+│   ├── class_names.json
+│   └── mobilenet_phase2.keras
+├── notebook/
+│   └── TrashCan_Material_Classification.ipynb
+├── presentations/
+│   └── Waste.pdf
+├── streamlit/
+│   ├── Localization_Segmentation.py
+│   ├── app.py
+│   ├── classification.py
+│   └── index.py
+├── README.md
+├── packages.txt
+└── requirements.txt
+```
+### File Descriptions
+
+| File / Folder | Description |
+|---|---|
+| `.devcontainer/` | Contains development container configuration. |
+| `devcontainer.json` | Configures the development environment. |
+| `data/` | Stores trained models and supporting files. |
+| `best.pt` | Trained YOLO11n-seg model weights for object detection and segmentation. |
+| `class_names.json` | Contains classification category names. |
+| `mobilenet_phase2.keras` | Trained MobileNetV2 classification model. |
+| `notebook/` | Contains the project Jupyter Notebook. |
+| `TrashCan_Material_Classification.ipynb` | Contains the model development and training workflow. |
+| `presentations/` | Stores project presentation files. |
+| `Waste.pdf` | Project presentation in PDF format. |
+| `streamlit/` | Contains the Streamlit application files. |
+| `Localization_Segmentation.py` | Handles object localization and segmentation. |
+| `app.py` | Main Streamlit application. |
+| `classification.py` | Handles waste image classification. |
+| `index.py` | Provides application navigation. |
+| `README.md` | Project documentation. |
+| `packages.txt` | Lists required system packages. |
+| `requirements.txt` | Lists required Python libraries. |
+
 # URL
 
 https://underwater-waste-detection.streamlit.app
