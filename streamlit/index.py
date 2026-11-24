@@ -4,63 +4,58 @@ import streamlit as st
 st.set_page_config(
     page_title="Underwater Waste Detection",
     page_icon="🌊",
-    layout="centered"
+    layout="wide"
 )
 
-# Main title
+# Header
 st.title("🌊 Underwater Waste Detection")
 
-st.write("""
-Underwater waste pollution is a growing environmental problem
-that threatens marine ecosystems.
-
-This project uses deep learning and computer vision to identify
-and analyse underwater waste through two different approaches.
+st.markdown("""
+Using deep learning and computer vision to identify
+and locate underwater waste.
 """)
 
 st.divider()
 
-# Project approaches
-st.header("Explore the Models")
+# Introduction
+st.subheader("Explore the Models")
 
-col1, col2 = st.columns(2, gap="medium")
+st.write("""
+Choose one of the computer vision models below to explore
+how underwater waste can be identified in images.
+""")
+
+col1, col2 = st.columns(2, gap="large")
 
 with col1:
-    with st.container(border=True, height=230):
-        st.subheader("🖼️ Image Classification")
+    st.markdown("### 🖼️ Image Classification")
 
-        st.write("""
-        Classifies underwater images into one of the
-        trained waste categories.
-        """)
+    st.write("""
+    Identify the type of underwater waste in an uploaded image.
 
-        st.write("")
-        st.write("**Goal:** Identify the type of waste.")
+    **Output:** A predicted waste category.
+    """)
 
 with col2:
-    with st.container(border=True, height=230):
-        st.subheader("🎯 Detection & Segmentation")
+    st.markdown("### 🎯 Detection & Segmentation")
 
-        st.write("""
-        Locates underwater waste and highlights
-        objects using bounding boxes or segmentation masks.
-        """)
+    st.write("""
+    Detect waste objects and highlight their locations
+    within an uploaded image.
 
-        st.write("")
-        st.write("**Goal:** Identify and locate waste objects.")
+    **Output:** Bounding boxes and segmentation masks.
+    """)
 
 st.divider()
 
-# About the project
-st.header("About the Project")
+# About
+st.subheader("About the Project")
 
 st.write("""
-The goal is to explore how deep learning can help make
-underwater waste identification and monitoring easier.
-
-Both approaches provide different ways of analysing
-underwater images and recognising waste.
+This project explores different computer vision approaches
+for underwater waste analysis. It demonstrates how deep
+learning can help recognise waste categories and locate
+individual waste objects in underwater images.
 """)
 
-# Navigation information
 st.info("👈 Select a model from the sidebar to get started.")
