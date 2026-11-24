@@ -11,11 +11,11 @@ st.set_page_config(
 st.title("🌊 Underwater Waste Detection")
 
 st.write("""
-Underwater waste pollution is a growing environmental problem that
-threatens marine ecosystems.
+Underwater waste pollution is a growing environmental problem
+that threatens marine ecosystems.
 
 This project uses deep learning and computer vision to identify
-underwater waste in images through two different approaches.
+and analyse underwater waste through two different approaches.
 """)
 
 st.divider()
@@ -23,26 +23,35 @@ st.divider()
 # Project approaches
 st.header("Explore the Models")
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(2, gap="medium")
 
 with col1:
-    st.subheader("🖼️ Image Classification")
-    st.write("""
-    Classifies underwater images into one of the
-    trained waste categories.
-    """)
+    with st.container(border=True, height=230):
+        st.subheader("🖼️ Image Classification")
+
+        st.write("""
+        Classifies underwater images into one of the
+        trained waste categories.
+        """)
+
+        st.write("")
+        st.write("**Goal:** Identify the type of waste.")
 
 with col2:
-    st.subheader("🎯 Detection & Segmentation")
-    st.write("""
-    Locates underwater waste in images and
-    highlights the objects using bounding boxes
-    or segmentation masks.
-    """)
+    with st.container(border=True, height=230):
+        st.subheader("🎯 Detection & Segmentation")
+
+        st.write("""
+        Locates underwater waste and highlights
+        objects using bounding boxes or segmentation masks.
+        """)
+
+        st.write("")
+        st.write("**Goal:** Identify and locate waste objects.")
 
 st.divider()
 
-# Project information
+# About the project
 st.header("About the Project")
 
 st.write("""
@@ -53,4 +62,5 @@ Both approaches provide different ways of analysing
 underwater images and recognising waste.
 """)
 
+# Navigation information
 st.info("👈 Select a model from the sidebar to get started.")
