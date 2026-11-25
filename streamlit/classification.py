@@ -12,6 +12,21 @@ Upload an underwater image to identify the type of waste
 using a trained deep learning model.
 """)
 
+st.markdown("### Supported Waste Categories")
+
+categories = [
+    "Plastic",
+    "Metal",
+    "Wood",
+    "Fabric",
+    "Paper",
+    "Fishing Gear",
+    "Rubber",
+    "Other Waste"
+]
+
+st.write(", ".join(categories))
+
 st.divider()
 
 # Load model
